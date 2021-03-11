@@ -13,16 +13,13 @@ const HeaderBar = () => {
       style={
         iPhone
           ? { paddingBottom: '100px' }
-          : { paddingBottom: '50px' }
-      }
-    >
+          : { paddingBottom: '50px', zoom: '120%' }
+      }>
       <FullCalendar
         height={0}
         dayHeaders={0}
         locale="ja" // ロケール設定。
         plugins={[dayGridPlugin]} // 月表示、日付等のクリックを可能にするプラグインを設定。
-        selectable={true} // 日付選択を可能にする。interactionPluginが有効になっている場合のみ。
-        weekends={true} // 週末を強調表示する。
         titleFormat={{
           year: 'numeric',
           month: 'short',
@@ -35,7 +32,7 @@ const HeaderBar = () => {
           custom2: {
             text: `誕生日一覧`,
             click: () => {
-              history.push('/view');
+              history.push('/birthdaylist');
             },
           },
           custom3: {

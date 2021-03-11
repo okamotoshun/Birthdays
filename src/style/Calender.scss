@@ -1,0 +1,41 @@
+@mixin sp {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.fc {
+  font-size: 1rem;
+  margin: 2px 2px 2px;
+  @include sp {
+    font-size: 0.75rem;
+    padding: 5px 0;
+  }
+}
+
+.fc-event-title {
+  margin-bottom: 1px;
+  font-size: 1rem;
+  @include sp {
+    font-size: 0.1rem;
+  }
+}
+
+.fc .fc-button-group {
+  zoom: 100%;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  zoom: 160%;
+  margin: 0;
+  margin: 5px;
+  @include sp {
+    zoom: 130%;
+  }
+}
+
+.tippy-tooltip.custom-theme {
+  background-color: white;
+  color: black;
+  font-size: 30px;
+}
