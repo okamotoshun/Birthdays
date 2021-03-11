@@ -9,19 +9,16 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
-import './HomePage.css';
+import '../style/HomePage.css';
 
 const HomePage = () => {
   const history = useHistory();
   return (
     <div className="homepage">
-      <Segment inverted textAlign="center" vertical >
+      <Segment inverted textAlign="center" vertical>
         <Container>
           <Header as="h1" inverted>
-            <Image
-              src="/assets/birthday.png"
-              style={{ marginBottom: 15 }}
-            />
+            <Image src="/assets/birthday.png" style={{ marginBottom: 15 }} />
             Birth days
           </Header>
           <Button onClick={() => history.push('/login')} size="huge" inverted>

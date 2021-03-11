@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
-import ScrollToTop from './components/ScrollToTop';
-import HomePage from './page/HomePage';
+import ScrollToTop from './ScrollToTop';
+import HomePage from '../features/HomePage';
 
 const App = () => {
   return (
