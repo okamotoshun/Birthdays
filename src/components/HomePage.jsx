@@ -9,7 +9,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
-import '../style/HomePage.css';
+import '../style/HomePage.scss';
 
 const HomePage = () => {
   const history = useHistory();
@@ -21,7 +21,7 @@ const HomePage = () => {
             <Image src="/assets/birthday.png" style={{ marginBottom: 15 }} />
             Birth days
           </Header>
-          <Button onClick={() => history.push('/login')} size="huge" inverted>
+          <Button onClick={() => history.push('/auth')} size="huge" inverted>
             Get Started
             <Icon name="right arrow" inverted />
           </Button>
