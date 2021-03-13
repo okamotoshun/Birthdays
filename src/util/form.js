@@ -10,7 +10,6 @@ for (let i = thisYear - 100; i < thisYear + 1; i++) {
   years.push({ id: i, name: i, value: `${i}` });
 }
 
-
 export const months = [];
 for (let i = 1; i < 12 + 1; i++) {
   if (i < 10) {
@@ -19,7 +18,6 @@ for (let i = 1; i < 12 + 1; i++) {
     months.push({ id: i, name: i, value: `${i}` });
   }
 }
-
 
 export const days = [];
 for (let i = 1; i < 31 + 1; i++) {
@@ -33,11 +31,14 @@ for (let i = 1; i < 31 + 1; i++) {
 
 // イメージカラーリスト(追加予定)
 export const colors = [
-  { id: 1, name: 'ブラック', value: 'black', textColor: 'white' },
+  { id: 1, name: 'ブラック', value: '#000000' },
   { id: 2, name: 'ブルー', value: '#3788D8' },
   { id: 3, name: 'オレンジ', value: '#F39803' },
   { id: 4, name: 'レッド', value: '#E60114' },
   { id: 5, name: 'パープル', value: '#920783' },
   { id: 6, name: 'イエロー', value: '#FEEF55' },
   { id: 7, name: 'ピンク', value: '#F8C1D8' },
+  { id: 8, name: 'グレー', value: '#9FA0A0' },
+  { id: 9, name: 'グリーン', value: '#009944' },
+  { id: 10, name: 'ブラウン', value: '#955629' },
 ];

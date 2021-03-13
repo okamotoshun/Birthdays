@@ -28,15 +28,15 @@ const Calender = () => {
     <FullCalendar
       height="100%"
       locale="ja" // ロケール設定。
-      plugins={[dayGridPlugin, interactionPlugin]} // 月表示、日付等のクリックを可能にするプラグインを設定。
+      plugins={ [dayGridPlugin, interactionPlugin] } // 月表示、日付等のクリックを可能にするプラグインを設定。
       initialView="" // カレンダーの初期表示設定。
-      selectable={true} // 日付選択を可能にする。interactionPluginが有効になっている場合のみ。
-      weekends={true} // 週末を強調表示する。
-      titleFormat={{
+      selectable={ true } // 日付選択を可能にする。interactionPluginが有効になっている場合のみ。
+      weekends={ true } // 週末を強調表示する。
+      titleFormat={ {
         year: 'numeric',
         month: 'short',
-      }}
-      customButtons={{
+      } }
+      customButtons={ {
         custom1: {
           text: `入力ページ`,
           click: () => history.push('/form'),
@@ -64,25 +64,24 @@ const Calender = () => {
           text: `三`,
           click: () => {
             history.push('/nav');
-            auth.signOut();
           },
         },
-      }}
+      } }
       headerToolbar={
         iPhone
           ? {
-              start: 'today,prev,next',
-              center: 'title',
-              end: 'custom1,custom2,custom3,custom4',
-            }
+            start: 'today,prev,next',
+            center: 'title',
+            end: 'custom1,custom2,custom3,custom4',
+          }
           : {
-              start: 'today,prev,next',
-              center: 'title',
-              end: 'custom5',
-            }
+            start: 'today,prev,next',
+            center: 'title',
+            end: 'custom5',
+          }
       }
-      events={users}
-      eventMouseEnter={(mouseEnterInfo) => {
+      events={ users }
+      eventMouseEnter={ (mouseEnterInfo) => {
         tippy(mouseEnterInfo.el, {
           content: `
           ${getAge(
@@ -96,9 +95,7 @@ const Calender = () => {
           delay: 200,
           theme: 'custom',
         });
-      }}
-
-      eventTextColor="black"
+      } }
     />
   );
 };

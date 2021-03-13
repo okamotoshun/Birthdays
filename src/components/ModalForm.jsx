@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles(() => ({
-  tr: {
+  option: {
     background: '#f1f1f1',
     '&:hover': {
       opacity: '0.5',
@@ -19,12 +19,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ModalForm = ({ handleClose, id }) => {
-  console.log(id);
   const classes = useStyles();
   const { currentUser } = firebase.auth();
   const { register, handleSubmit, control } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     const ref = db.collection(`users/${currentUser.uid}/birth`);
     ref.doc(id.id).set({
       data,
@@ -91,7 +89,7 @@ const ModalForm = ({ handleClose, id }) => {
                   id="select">
                   {years.map((year) => (
                     <MenuItem
-                      className={classes.tr}
+                      className={classes.option}
                       value={year.value}
                       key={year.id}>
                       {year.name}
@@ -105,8 +103,6 @@ const ModalForm = ({ handleClose, id }) => {
               variant="outlined"
               name="month"
               control={control}
-              // defaultValue="1"
-
               as={
                 <TextField
                   defaultValue={id.month}
@@ -119,7 +115,7 @@ const ModalForm = ({ handleClose, id }) => {
                   id="select">
                   {months.map((month) => (
                     <MenuItem
-                      className={classes.tr}
+                      className={classes.option}
                       value={month.value}
                       key={month.id}>
                       {month.name}
@@ -145,7 +141,7 @@ const ModalForm = ({ handleClose, id }) => {
                   id="select">
                   {days.map((day) => (
                     <MenuItem
-                      className={classes.tr}
+                      className={classes.option}
                       value={day.value}
                       key={day.id}>
                       {day.name}

@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router';
-import React from 'react'
+import React from 'react';
 import {
   Button,
   Container,
@@ -17,13 +17,17 @@ const HomePage = () => {
     <div className="homepage">
       <Segment inverted textAlign="center" vertical>
         <Container>
-          <Header as="h1" inverted>
-            <Image
-              src="/assets/birthday.png"
-              style={{marginBottom: '15' }}
-            />
-            Birth days
-          </Header>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '15',
+            }}>
+            <Header as="h1" inverted>
+              <Image src="/assets/birthday.png" />
+              <p>Birth days</p>
+            </Header>
+          </div>
           <Button onClick={() => history.push('/auth')} size="huge" inverted>
             Get Started
             <Icon name="right arrow" inverted />

@@ -11,26 +11,23 @@ import { useContext } from 'react';
 import firebase from 'firebase';
 import { db } from '../firebase';
 import { makeStyles } from '@material-ui/core/styles';
-// import FormComponent from './FormComponent';
 import { getAge } from '../util/age';
 import ModalForm from './ModalForm'
 import '../style/BirthdayListItem.scss'
 
+// modal-----------------------------------------------
 function rand() {
   return Math.round(Math.random());
 }
-
 function getModalStyle() {
   const top = 50 + rand();
   const left = 50 + rand();
-
   return {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
   };
 }
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
@@ -42,19 +39,20 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
   },
 }));
+// ---------------------------------------------------
 
 const BirthdayListItem = ({ birth, number }) => {
   // eslint-disable-next-line eqeqeq
-  const result = birth.filter((x) => x.month == number);
-  console.log(result);
+  const monthdata = birth.filter((x) => x.month == number);
   const iPhone = useContext(iPhoneContext);
   const { currentUser } = firebase.auth();
   const [id, setId] = useState('');
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
-  const handleOpen = (b) => {
-    setId(b);
+
+  const handleOpen = (id) => {
+    setId(id);
     setOpen(true);
   };
 
@@ -81,9 +79,9 @@ const BirthdayListItem = ({ birth, number }) => {
 
   return (
     <List component="div" disablePadding>
-      {result.map((b) => {
+      {monthdata.map((x) => {
         return (
-          <Accordion key={b.id} >
+          <Accordion key={x.id} >
             <ListItem
               className='center'
               style={
@@ -101,16 +99,16 @@ const BirthdayListItem = ({ birth, number }) => {
               }
             >
               <div className='center'>
-                <span style={{ color: `${b.color}` }}>
+                <span style={{ color: `${x.color}` }}>
                   <AccountCircle fontSize={iPhone ? '' : 'small'} />
                 </span>
-                　{b.title}
+                　{x.title}
               </div>
               <div className='center'>
                 <span style={{ paddingRight: '30px' }}>{`${getAge(
-                  b.year,
-                  b.month,
-                  b.day
+                  x.year,
+                  x.month,
+                  x.day
                 )}才`}</span>
                 <div>
                   <Modal
@@ -123,7 +121,7 @@ const BirthdayListItem = ({ birth, number }) => {
                 </div>
                 <IconButton
                   type="button"
-                  onClick={() => handleOpen(b)}
+                  onClick={() => handleOpen(x)}
                   size="small"
                   variant="contained"
 
@@ -131,7 +129,7 @@ const BirthdayListItem = ({ birth, number }) => {
                   <EditIcon color="primary" fontSize="small" />
                 </IconButton>
                 <IconButton
-                  onClick={() => handleDelete(b.id)}
+                  onClick={() => handleDelete(x.id)}
                   type="submit"
                   size="small"
                   variant="contained"

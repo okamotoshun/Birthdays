@@ -2,7 +2,7 @@ import { iPhoneContext } from '../App';
 import { useContext } from 'react';
 import { UserContext } from '../App';
 import { monthList } from '../util/lists';
-import BirthdayListItem from './BirthdayListItem'
+import BirthdayListItem from './BirthdayListItem';
 import HeaderBar from '../layout/HeaderBar';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import '../style/BirthdayList.scss'
+import '../style/BirthdayList.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +37,7 @@ const BirthdayList = () => {
   const classes = useStyles();
   const birth = useContext(UserContext);
   return (
-    <div className='back'>
+    <div className="back">
       <HeaderBar />
       <div
         className={classes.root}
@@ -57,7 +57,7 @@ const BirthdayList = () => {
         }>
         {monthList.map((a) => {
           // eslint-disable-next-line eqeqeq
-          const result = birth.filter((x) => x.month == a.id); //その月のリストだけ表示
+          const result = birth.filter((x) => x.month == a.id); //その月のリストだけ表示 listitemで使う
           return (
             <div style={{ margin: '0px 2px 4px' }} key={a.id}>
               <Accordion
@@ -65,7 +65,7 @@ const BirthdayList = () => {
                 className={classes.accordion}
                 defaultExpanded={true}>
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<ExpandMoreIcon fontSize="small" />}
                   aria-controls="panel2a-content"
                   style={
                     iPhone
@@ -74,15 +74,12 @@ const BirthdayList = () => {
                           minWidth: '422px',
                         }
                       : {
-                        backgroundColor: `${a.color}`,
-                        minHeight:'40px'
+                          backgroundColor: `${a.color}`,
+                          minHeight: '40px',
                         }
                   }
                   id="panel2a-header">
-                  <Typography
-                    className={classes.heading}>
-                    {a.month}
-                  </Typography>
+                  <Typography className={classes.heading}>{a.month}</Typography>
                 </AccordionSummary>
                 <BirthdayListItem birth={result} number={a.id} />
               </Accordion>

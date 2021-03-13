@@ -224,7 +224,6 @@ const Auth = (props) => {
             <Button
               fullWidth
               variant="contained"
-              // className={classes.submit}
               startIcon={<CameraIcon />}
               onClick={signInGoogle}>
               SignIn with Google

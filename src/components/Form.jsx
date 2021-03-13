@@ -15,7 +15,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { makeStyles } from '@material-ui/core/styles';
 import HeaderBar from '../layout/HeaderBar';
-// import './Form.module.css';
 
 const useStyles = makeStyles(() => ({
   tr: {
@@ -70,7 +69,6 @@ const Form = () => {
             <TextField
               style={{ marginBottom: '25px' }}
               variant="outlined"
-              autoFocus={true}
               label="名前"
               fullWidth
               name="name"
@@ -201,17 +199,18 @@ const Form = () => {
                 rules={{ required: 'カラーを選択してください！' }}
                 as={
                   <TextField
+                    className='color'
                     defaultValue=""
                     color="primary"
                     variant="outlined"
-                    style={{
-                      margin: '0',
-                    }}
                     select
                     label="イメージカラー"
                     margin="normal"
                     fullWidth
                     id="select"
+                    style={{
+                      margin: '0',
+                    }}
                     error={Boolean(errors.color)}
                     helperText={errors.color && errors.color.message}>
                     {colors.map((color) => (
