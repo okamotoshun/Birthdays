@@ -23,12 +23,14 @@
 
 .fc .fc-button-group {
   zoom: 100%;
+
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
   zoom: 160%;
   margin: 0;
   margin: 5px;
+
   @include sp {
     zoom: 130%;
   }
@@ -39,3 +41,5 @@
   color: black;
   font-size: 30px;
 }
+
+

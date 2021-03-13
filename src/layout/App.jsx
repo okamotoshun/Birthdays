@@ -8,6 +8,7 @@ import HomePage from '../components/HomePage';
 import useMedia from 'use-media';
 import Calender from '../components/Calender';
 import Birthdaylist from '../components/BirthdayList';
+import Nav from '../components/Nav';
 
 export const iPhoneContext = createContext();
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/auth" component={Auth} />
           <Route exact path="/birthdaylist" component={Birthdaylist} />
           <Route exact path="/calender" component={Calender} />
+          <Route exact path="/nav" component={Nav} />
         </iPhoneContext.Provider>
       </BrowserRouter>
     </div>

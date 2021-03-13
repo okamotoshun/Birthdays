@@ -1,0 +1,12 @@
+.root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 100px 15%;
+
+  .MuiButtonBase-root {
+    margin: 5px 15px;
+    font-size: x-large;
+  }
+}

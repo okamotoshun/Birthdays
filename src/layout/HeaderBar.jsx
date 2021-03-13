@@ -48,6 +48,13 @@ const HeaderBar = () => {
               auth.signOut();
             },
           },
+          custom5: {
+            text: `三`,
+            click: () => {
+              history.push('/nav');
+              auth.signOut();
+            },
+          },
         }}
         headerToolbar={
           iPhone
@@ -58,8 +65,8 @@ const HeaderBar = () => {
               }
             : {
                 start: '',
-                center: 'custom1,custom2,custom3,custom4',
-                end: '',
+                // center: 'custom1,custom2,custom3,custom4',
+                end: 'custom5',
               }
         }
         eventTextColor="black"

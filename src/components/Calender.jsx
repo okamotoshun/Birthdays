@@ -58,6 +58,13 @@ const Calender = () => {
             auth.signOut();
           },
         },
+        custom5: {
+          text: `三`,
+          click: () => {
+            history.push('/nav');
+            auth.signOut();
+          },
+        },
       }}
       headerToolbar={
         iPhone
@@ -67,20 +74,12 @@ const Calender = () => {
               end: 'custom1,custom2,custom3,custom4',
             }
           : {
-              start: '',
-              center: 'title',
-              end: '',
-            }
-      }
-      footerToolbar={
-        iPhone
-          ? ''
-          : {
               start: 'today,prev,next',
-              center: '',
-              end: 'custom1,custom2,custom3',
+              center: 'title',
+              end: 'custom5',
             }
       }
+    
       events={[{ title: 'jknvs', date: '2021-03-05' }]}
       eventMouseEnter={(mouseEnterInfo) => {
         tippy(mouseEnterInfo.el, {
