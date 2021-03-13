@@ -10,7 +10,8 @@ import 'tippy.js/themes/light.css';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../firebase';
-import { iPhoneContext } from '../layout/App';
+
+import { iPhoneContext, CalenderContext } from '../App';
 import { useContext } from 'react';
 
 // FullCalendarで日付や時間が選択できるようになるモジュール。
@@ -18,10 +19,11 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { getAge } from '../util/age';
 
 const Calender = () => {
-  // const users = useContext(UserContext);
+  const users = useContext(CalenderContext);
   const iPhone = useContext(iPhoneContext);
   const history = useHistory();
 
+  console.log(users);
   return (
     <FullCalendar
       height="100%"
@@ -79,8 +81,7 @@ const Calender = () => {
               end: 'custom5',
             }
       }
-    
-      events={[{ title: 'jknvs', date: '2021-03-05' }]}
+      events={users}
       eventMouseEnter={(mouseEnterInfo) => {
         tippy(mouseEnterInfo.el, {
           content: `
@@ -96,6 +97,7 @@ const Calender = () => {
           theme: 'custom',
         });
       }}
+
       eventTextColor="black"
     />
   );

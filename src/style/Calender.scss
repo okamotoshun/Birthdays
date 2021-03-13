@@ -15,9 +15,9 @@
 
 .fc-event-title {
   margin-bottom: 1px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   @include sp {
-    font-size: 0.1rem;
+    font-size: 0.5rem;
   }
 }
 
@@ -41,5 +41,3 @@
   color: black;
   font-size: 30px;
 }
-
-

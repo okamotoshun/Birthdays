@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 const ColorButton = withStyles((theme) => ({
   root: {
     color: theme.palette.getContrastText('#2d3e4f'),
+
     backgroundColor: ['#2d3e4f'],
     opacity: ['0.9'],
     '&:hover': {
@@ -33,7 +34,6 @@ const Nav = () => {
         variant="contained"
         onClick={() => {
           history.push('/calender');
-          auth.signOut();
         }}>
         カレンダー
       </ColorButton>
@@ -41,7 +41,6 @@ const Nav = () => {
         variant="contained"
         onClick={() => {
           history.push('/birthdaylist');
-          auth.signOut();
         }}>
         誕生日一覧
       </ColorButton>
@@ -49,7 +48,6 @@ const Nav = () => {
         variant="contained"
         onClick={() => {
           history.push('/form');
-          auth.signOut();
         }}>
         入力ページ
       </ColorButton>

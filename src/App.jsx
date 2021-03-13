@@ -1,18 +1,17 @@
 import './App.scss';
 import { useState, createContext, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Auth from '../components/Auth';
-import HomePage from '../components/HomePage';
-import Calender from '../components/Calender';
-import Birthdaylist from '../components/BirthdayList';
-import Nav from '../components/Nav';
+import Auth from './components/Auth';
+import HomePage from './components/HomePage';
+import Calender from './components/Calender';
+import Birthdaylist from './components/BirthdayList';
+import Nav from './components/Nav';
 
 import firebase from 'firebase';
-
 import useMedia from 'use-media';
-import ScrollToTop from './ScrollToTop';
-import { getAge } from '../util/age';
-import { auth } from '../firebase';
+import ScrollToTop from './layout/ScrollToTop';
+import { auth } from './firebase';
+import { thisYear } from './util/form';
 
 // context
 export const iPhoneContext = createContext();
@@ -23,20 +22,23 @@ const App = () => {
   const isWide = useMedia({ minWidth: '900px' });
   const [iPhone, setiPhone] = useState(isWide);
   const [users, setUsers] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState();
   const [calenderData, setCalenderData] = useState([]);
   const { currentUser } = firebase.auth();
 
   useEffect(() => {
-    setiPhone(isWide);
     auth.onAuthStateChanged((user) => {
       // userがログインしていたらuser情報が、していなければnullが入る
       setUser(user);
     });
+  }, []);
+  useEffect(() => {
+    setiPhone(isWide);
     let unsubscribe = () => {};
     if (currentUser) {
       const db = firebase.firestore();
-      db.collection(`users/${currentUser.uid}/data`).onSnapshot(
+      db.collection(`users/${currentUser.uid}/birth`).onSnapshot(
         (querySnapshot) => {
           const fetchdata = [];
           querySnapshot.forEach((doc) => {
@@ -48,7 +50,7 @@ const App = () => {
             return {
               id: value[0],
               title: `${value[1].name}`,
-              date: `${getAge}-${value[1].month}-${value[1].day}`,
+              date: `${thisYear}-${value[1].month}-${value[1].day}`,
               year: `${value[1].year}`,
               month: `${value[1].month}`,
               day: `${value[1].day}`,
@@ -58,6 +60,7 @@ const App = () => {
             };
           });
           setUsers(getdata);
+          console.log(getdata);
           // ------------------------------------------
           // calendar用データ 今年と来年の表示
           const calenderdata = fetchdata.map((value) => {
@@ -65,7 +68,7 @@ const App = () => {
               {
                 id: value[0],
                 title: `${value[1].name}`,
-                date: `${getAge}-${value[1].month}-${value[1].day}`,
+                date: `${thisYear}-${value[1].month}-${value[1].day}`,
                 year: `${value[1].year - 1}`,
                 month: `${value[1].month}`,
                 day: `${value[1].day}`,
@@ -74,9 +77,9 @@ const App = () => {
                 memo: `${value[1].memo}`,
               },
               {
-                id: `${value[1]}x`,
+                id: `${value[0]}x`,
                 title: `${value[1].name}`,
-                date: `${getAge + 1}-${value[1].month}-${value[1].day}`,
+                date: `${thisYear + 1}-${value[1].month}-${value[1].day}`,
                 year: `${value[1].year - 2}`,
                 month: `${value[1].month}`,
                 day: `${value[1].day}`,
@@ -86,7 +89,6 @@ const App = () => {
               },
             ];
           });
-
           // [],{}を使いやすく変える処理
           const opendata = [];
           calenderdata.forEach((doc) => {
@@ -94,6 +96,7 @@ const App = () => {
           });
           setCalenderData(opendata);
           // -------------------------------------------
+          console.log(calenderdata);
         }
       );
       return unsubscribe();
@@ -102,20 +105,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <iPhoneContext.Provider value={iPhone}>
-          <UserContext.Provider value={users}>
-            <CalenderContext.Provider value={calenderData}>
+      <CalenderContext.Provider value={calenderData}>
+        <UserContext.Provider value={users}>
+          <iPhoneContext.Provider value={iPhone}>
+            <BrowserRouter>
               <ScrollToTop />
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/auth" component={Auth} />
               <Route exact path="/birthdaylist" component={Birthdaylist} />
               <Route exact path="/calender" component={Calender} />
               <Route exact path="/nav" component={Nav} />
-            </CalenderContext.Provider>
-          </UserContext.Provider>
-        </iPhoneContext.Provider>
-      </BrowserRouter>
+              <Route exact path="/auth" component={Auth} />
+            </BrowserRouter>
+          </iPhoneContext.Provider>
+        </UserContext.Provider>
+      </CalenderContext.Provider>
     </div>
   );
 };

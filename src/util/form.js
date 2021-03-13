@@ -3,7 +3,7 @@
 // 今年を表す関数
 const time = new Date();
 export const thisYear = time.getFullYear();
-console.log(thisYear);
+// console.log(thisYear);
 
 export const years = [];
 for (let i = thisYear - 100; i < thisYear + 1; i++) {

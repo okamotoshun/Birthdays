@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { auth } from '../firebase';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { iPhoneContext } from '../layout/App';
+import { iPhoneContext } from '../App';
 
 const HeaderBar = () => {
   const history = useHistory();
@@ -52,7 +52,6 @@ const HeaderBar = () => {
             text: `三`,
             click: () => {
               history.push('/nav');
-              auth.signOut();
             },
           },
         }}
@@ -64,8 +63,8 @@ const HeaderBar = () => {
                 end: 'custom1,custom2,custom3,custom4',
               }
             : {
-                start: '',
-                // center: 'custom1,custom2,custom3,custom4',
+                start: 'title',
+
                 end: 'custom5',
               }
         }
