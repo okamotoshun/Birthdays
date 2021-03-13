@@ -13,7 +13,7 @@ const HeaderBar = () => {
       style={
         iPhone
           ? { paddingBottom: '100px' }
-          : { paddingBottom: '50px', zoom: '120%' }
+          : { paddingBottom: '65px', zoom: '120%' }
       }>
       <FullCalendar
         height={0}

@@ -12,6 +12,7 @@ import useMedia from 'use-media';
 import ScrollToTop from './layout/ScrollToTop';
 import { auth } from './firebase';
 import { thisYear } from './util/form';
+import Form from './components/Form';
 
 // context
 export const iPhoneContext = createContext();
@@ -111,10 +112,11 @@ const App = () => {
             <BrowserRouter>
               <ScrollToTop />
               <Route exact path="/" component={HomePage} />
+              <Route exact path="/auth" component={Auth} />
               <Route exact path="/birthdaylist" component={Birthdaylist} />
+              <Route exact path="/form" component={Form} />
               <Route exact path="/calender" component={Calender} />
               <Route exact path="/nav" component={Nav} />
-              <Route exact path="/auth" component={Auth} />
             </BrowserRouter>
           </iPhoneContext.Provider>
         </UserContext.Provider>

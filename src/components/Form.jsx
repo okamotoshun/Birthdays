@@ -1,5 +1,9 @@
-import React from 'react';
+import { useHistory } from 'react-router';
 import { Controller, useForm } from 'react-hook-form';
+import { days, months, years, colors } from '../util/form';
+import firebase from 'firebase/app';
+import { db } from '../firebase';
+
 import {
   Box,
   MenuItem,
@@ -7,15 +11,11 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
-import { days, months, years, colors } from '../data/data';
-import { db } from '../firebase/firebase';
-import firebase from 'firebase/app';
-import { makeStyles } from '@material-ui/core/styles';
-import Header from './Header';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { useHistory } from 'react-router';
-import './Form.module.css';
+import { makeStyles } from '@material-ui/core/styles';
+import HeaderBar from '../layout/HeaderBar';
+// import './Form.module.css';
 
 const useStyles = makeStyles(() => ({
   tr: {
@@ -38,12 +38,12 @@ const Form = () => {
     ref.add({
       data,
     });
-    history.push('/view');
+    history.push('/birthdaylist');
   };
 
   return (
     <>
-      <Header />
+      <HeaderBar />
       <div
         style={{
           backgroundColor: 'whitesmoke',
@@ -52,7 +52,7 @@ const Form = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           style={{
-            width: '85%',
+            width: '90%',
             margin: '0 auto',
             padding: ' 3% 3% 2% ',
             backgroundColor: '#ffffff',
