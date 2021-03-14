@@ -12,8 +12,17 @@ import firebase from 'firebase';
 import { db } from '../firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import { getAge } from '../util/age';
-import ModalForm from './ModalForm'
-import '../style/BirthdayListItem.scss'
+import ModalForm from './ModalForm';
+import '../style/BirthdayListItem.scss';
+
+// 0を消す関数
+const slice = (day) => {
+  if (day < 10) {
+    return (`　${day.slice(1)}日`)
+  } else {
+    return `　${day}日`;
+  }
+};
 
 // modal-----------------------------------------------
 function rand() {
@@ -81,9 +90,9 @@ const BirthdayListItem = ({ birth, number }) => {
     <List component="div" disablePadding>
       {monthdata.map((x) => {
         return (
-          <Accordion key={x.id} >
+          <Accordion key={x.id}>
             <ListItem
-              className='center'
+              className="center"
               style={
                 iPhone
                   ? {
@@ -96,15 +105,14 @@ const BirthdayListItem = ({ birth, number }) => {
                       justifyContent: 'space-between',
                       fontSize: '16px',
                     }
-              }
-            >
-              <div className='center'>
+              }>
+              <div className="center">
                 <span style={{ color: `${x.color}` }}>
-                  <AccountCircle fontSize={iPhone ? '' : 'small'} />
+                  <AccountCircle fontSize={iPhone ? 'default' : 'small'} />
                 </span>
-                　{x.title}
+                {slice(x.day)}　{x.title}
               </div>
-              <div className='center'>
+              <div className="center">
                 <span style={{ paddingRight: '30px' }}>{`${getAge(
                   x.year,
                   x.month,
@@ -123,17 +131,15 @@ const BirthdayListItem = ({ birth, number }) => {
                   type="button"
                   onClick={() => handleOpen(x)}
                   size="small"
-                  variant="contained"
-
-                >
+                  variant="contained">
                   <EditIcon color="primary" fontSize="small" />
                 </IconButton>
                 <IconButton
                   onClick={() => handleDelete(x.id)}
                   type="submit"
+
                   size="small"
-                  variant="contained"
-               >
+                  variant="contained">
                   <DeleteIcon color="secondary" fontSize="small" />
                 </IconButton>
               </div>

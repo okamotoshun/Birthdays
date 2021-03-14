@@ -15,13 +15,14 @@ import '../style/BirthdayList.scss';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '90%',
-    margin: '0 auto',
+    margin: '0  auto ',
+    paddingBottom:'30px'
   },
 
   heading: {
     paddingLeft: '10px',
     fontSize: theme.typography.pxToRem(16),
-    margin: '0 auto',
+    margin: '0  auto',
     fontWeight: theme.typography.fontWeightRegular,
     display: 'flex',
     justifyContent: 'space-between',

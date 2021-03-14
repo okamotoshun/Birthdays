@@ -39,8 +39,9 @@ const App = () => {
     let unsubscribe = () => {};
     if (currentUser) {
       const db = firebase.firestore();
-      db.collection(`users/${currentUser.uid}/birth`).onSnapshot(
-        (querySnapshot) => {
+      db.collection(`users/${currentUser.uid}/birth`)
+        .orderBy('data.day', 'asc')
+        .onSnapshot((querySnapshot) => {
           const fetchdata = [];
           querySnapshot.forEach((doc) => {
             fetchdata.push([doc.id, doc.data().data]);
@@ -98,8 +99,7 @@ const App = () => {
           setCalenderData(opendata);
           // -------------------------------------------
           console.log(calenderdata);
-        }
-      );
+        });
       return unsubscribe();
     }
   }, [currentUser, isWide]);

@@ -35,7 +35,7 @@ const ModalForm = ({ handleClose, id }) => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{
-          width: '100%',
+          width: '90%',
           margin: '0 auto',
           padding: ' 1.5% 2% 1% ',
           backgroundColor: '#ffffff',

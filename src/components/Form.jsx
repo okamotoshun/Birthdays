@@ -256,7 +256,7 @@ const Form = () => {
             <Button
               type="submit"
               variant="contained"
-              onClick={() => history.push('/view')}
+              onClick={() => history.push('/birthdaylist')}
               style={{
                 backgroundColor: '#E0E1E2',
                 marginRight: '10px',
